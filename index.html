@@ -1,30 +1,3 @@
-Conversation Log
-seharusnya background awal ini foto yang saya kirim yang pakai almet itu yang kedua fitur playlist musik itu bisa di hapus dan dikasih masuk sesuai musik yang diinginkan, dan hapus saja tulisan pilih bedasarkan momen dan pilih satu tahun semester dan tulisan terakhir disusun oleh Erfolleg25
-
-Semua perubahan yang Anda minta telah berhasil diperbarui dan diterapkan ke file proyek Anda di: 📁 rumah-kenangan/index.html
-🖼️ rumah-kenangan/foto-kebersamaan.jpg
-
-Penjelasan Perbaikan & Solusi:
-Kenapa Sebelumnya Tampil Foto Kafe (Bukan Foto Almet)?
-Pada kode sebelumnya, tag gambar memiliki cadangan (fallback) otomatis ke foto Supabase kafe jika file lokal foto-kebersamaan.jpg belum terdeteksi di folder yang sama.
-Solusi sekarang: Cadangan link kafe tersebut sudah dihapus sepenuhnya. Foto almet yang Anda kirim telah disimpan dengan nama foto-kebersamaan.jpg di folder yang sama dengan index.html. Jika Anda mempublikasikannya (ke GitHub Pages, Vercel, Netlify, atau hosting mana pun), pastikan file foto-kebersamaan.jpg ditaruh di folder yang sama dengan index.html.
-Fitur Playlist Musik Sekarang Bisa Dihapus & Dimasukkan Lagu Pilihan Sendiri:
-Setiap lagu di daftar playlist kini memiliki tombol hapus (ikon tempat sampah 🗑️), sehingga Anda bisa menghapus lagu yang tidak diinginkan.
-Terdapat tombol + Tambah Lagu di dalam menu Playlist:
-Anda bisa memasukkan Judul Lagu, Nama Artis/Penyanyi, dan Link/URL file MP3.
-Atau klik 📁 File dari HP/PC untuk langsung memilih file musik MP3 dari laptop/HP Anda.
-Playlist Anda tersimpan otomatis di browser (localStorage), jadi meskipun web di-refresh, lagu pilihan Anda tidak akan hilang. Ada juga tombol "Kembalikan Lagu Bawaan" jika ingin mereset.
-Tulisan "pilih berdasarkan momen" Dihapus:
-Teks panduan filter tersebut telah dibersihkan dari bagian Galeri.
-Tulisan "pilih satu tahun semester" Dihapus:
-Teks panduan lini masa tersebut telah dihapus sepenuhnya dari bagian Perjalanan.
-Tulisan Footer Diperbarui:
-Tulisan di bagian bawah kini menjadi: "Rumah Kenangan — Disusun oleh Erfolleg25." dengan lampu status hijau Supabase yang tetap aktif.
-Kode Lengkap HTML Terbaru (index.html)
-
-Silakan salin seluruh kode di bawah ini:
-
-html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -34,10 +7,8 @@ html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* ========================================================
-   1. FONT GLIKER & FALLBACK
-   ======================================================== */
 @font-face {
   font-family: 'Gliker';
   src: local('Gliker'), local('Gliker Regular'), local('Gliker-Regular'),
@@ -51,20 +22,19 @@ html
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Gliker';
   src: local('Gliker Bold'), local('Gliker-Bold'), local('Gliker SemiBold'),
        url('fonts/Gliker-Bold.woff2') format('woff2'),
-       url('Gliker-Bold.woff2') format('woff2'),
+       url('fonts/Gliker-Bold.woff2') format('woff2'),
        url('Gliker-Bold.otf') format('opentype'),
        url('Gliker-Bold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
-/* ========================================================
-   2. PALET WARNA HANGAT
-   ======================================================== */
+
 :root {
   --bg-primary: #FAF7F2;
   --bg-secondary: #F3ECE2;
@@ -78,12 +48,12 @@ html
   --amber-glow: rgba(234, 88, 12, 0.28);
   --dark-overlay: #151311;
   --dark-text: #FAF6EE;
-  
   --font-all: 'Gliker', 'Fredoka', 'Plus Jakarta Sans', sans-serif;
   --ease: cubic-bezier(.22, .7, .2, 1);
   --shadow-card: 0 10px 24px -6px rgba(45, 30, 15, 0.08), 0 4px 8px -4px rgba(45, 30, 15, 0.04);
   --shadow-hover: 0 18px 36px -8px rgba(234, 88, 12, 0.18), 0 8px 16px -6px rgba(45, 30, 15, 0.06);
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -94,19 +64,19 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
+
 img, video { display: block; max-width: 100%; }
 button, input, select, textarea { font-family: var(--font-all); color: inherit; }
 button { background: none; border: 0; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
 h1, h2, h3, h4 {
   font-family: var(--font-all);
   font-weight: 600;
   line-height: 1.18;
   letter-spacing: -0.015em;
 }
-/* ========================================================
-   3. NAVIGATION BAR
-   ======================================================== */
+
 .nav {
   position: fixed;
   inset: 0 0 auto 0;
@@ -144,6 +114,7 @@ h1, h2, h3, h4 {
   display: inline-block;
   box-shadow: 0 0 10px var(--amber);
 }
+
 .nav-r {
   display: flex;
   gap: 12px;
@@ -160,6 +131,7 @@ h1, h2, h3, h4 {
 }
 @media(min-width:768px){ .nav-r a { display: inline-block; } }
 .nav.solid .nav-r a:hover { background: var(--bg-secondary); }
+
 .music-ctrls {
   display: flex;
   align-items: center;
@@ -198,6 +170,7 @@ h1, h2, h3, h4 {
 .sound-btn.playing .bars i:nth-child(3){ animation-delay: .45s; }
 .sound-btn.playing .bars i:nth-child(4){ animation-delay: .15s; }
 @keyframes eq { 0% { height: 3px; } 100% { height: 13px; } }
+
 .playlist-trigger {
   display: inline-flex;
   align-items: center;
@@ -217,6 +190,7 @@ h1, h2, h3, h4 {
   color: var(--ink);
 }
 .playlist-trigger:hover { border-color: var(--amber); color: var(--amber); }
+
 .manage-btn {
   padding: 7px 14px;
   border-radius: 99px;
@@ -228,9 +202,7 @@ h1, h2, h3, h4 {
 }
 .nav.solid .manage-btn { border-color: var(--line); background: var(--bg-card); color: var(--ink); }
 .manage-btn:hover { background: var(--amber); color: #FFF; border-color: var(--amber); }
-/* ========================================================
-   4. HERO DENGAN FOTO KEBERSAMAAN ALMET
-   ======================================================== */
+
 .hero {
   position: relative;
   min-height: 96svh;
@@ -275,6 +247,7 @@ h1, h2, h3, h4 {
   pointer-events: none;
 }
 .hero > *:not(.hero-bg) { position: relative; z-index: 2; }
+
 .hero-pill {
   display: inline-flex;
   align-items: center;
@@ -290,6 +263,7 @@ h1, h2, h3, h4 {
   width: fit-content;
   margin-bottom: 14px;
 }
+
 .hero h1 {
   font-size: clamp(1.85rem, 3.8vw, 3.1rem);
   max-width: 19ch;
@@ -308,6 +282,7 @@ h1, h2, h3, h4 {
 .hero h1 span:nth-child(2) b { animation-delay: .12s; color: #FED7AA; }
 .hero h1 span:nth-child(3) b { animation-delay: .24s; }
 @keyframes rise { to { transform: none; } }
+
 .hero-foot {
   display: flex;
   flex-wrap: wrap;
@@ -345,9 +320,7 @@ h1, h2, h3, h4 {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(234, 88, 12, 0.35);
 }
-/* ========================================================
-   5. SECTIONS & FILTERS
-   ======================================================== */
+
 section { padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 72px); }
 .head {
   display: grid;
@@ -367,6 +340,7 @@ section { padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 72px); }
 }
 .head h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); color: var(--ink); line-height: 1.15; }
 .head p { color: var(--ink-soft); max-width: 48ch; font-size: 1.02rem; }
+
 .filters {
   max-width: 1280px;
   margin: 0 auto 30px;
@@ -395,9 +369,7 @@ section { padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 72px); }
   box-shadow: 0 4px 14px var(--amber-glow);
 }
 .count { font-size: .9rem; color: var(--ink-soft); font-weight: 500; }
-/* ========================================================
-   6. GALLERY GRID
-   ======================================================== */
+
 .gallery {
   max-width: 1280px;
   margin: 0 auto;
@@ -437,6 +409,7 @@ section { padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 72px); }
   transition: transform .9s var(--ease);
 }
 .tile:hover img, .tile:focus-visible img { transform: scale(1.05); }
+
 .cap {
   position: absolute;
   inset: auto 0 0 0;
@@ -451,6 +424,7 @@ section { padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 72px); }
 @media(hover:none){ .cap { opacity: 1; transform: none; padding-top: 36px; } }
 .cap h3 { font-size: 1.18rem; font-weight: 600; line-height: 1.25; }
 .cap small { font-size: .8rem; opacity: .88; display: block; margin-top: 3px; color: #FED7AA; }
+
 .play-badge {
   position: absolute;
   top: 12px;
@@ -479,9 +453,7 @@ section { padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 72px); }
   border-radius: 16px;
   border: 1px dashed var(--line);
 }
-/* ========================================================
-   7. TIMELINE PERJALANAN KULIAH
-   ======================================================== */
+
 .timeline { background: var(--bg-secondary); border-block: 1px solid var(--line); }
 .tl { max-width: 960px; margin: 0 auto; position: relative; padding-left: 36px; }
 .tl::before {
@@ -542,12 +514,11 @@ section { padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 72px); }
   padding: 3px 10px;
   border-radius: 99px;
 }
-/* ========================================================
-   8. CLOSING & FOOTER
-   ======================================================== */
+
 .closing { text-align: center; padding-block: clamp(80px, 14vw, 160px); }
 .closing h2 { font-size: clamp(2rem, 5vw, 4rem); max-width: 18ch; margin: 0 auto 18px; }
 .closing p { color: var(--ink-soft); max-width: 48ch; margin: 0 auto 28px; }
+
 footer {
   padding: 24px clamp(20px, 5vw, 72px);
   border-top: 1px solid var(--line);
@@ -579,9 +550,7 @@ footer {
 }
 .status-dot.online { background: #10B981; box-shadow: 0 0 8px #10B981; }
 .status-dot.error { background: #EF4444; }
-/* ========================================================
-   9. POPUP INTERAKTIF AUDIO PLAYER & PLAYLIST MANAGER
-   ======================================================== */
+
 .player-modal {
   position: fixed;
   top: 76px;
@@ -600,6 +569,7 @@ footer {
   from { opacity: 0; transform: translateY(-10px) scale(0.96); }
   to { opacity: 1; transform: none; }
 }
+
 .pm-head {
   display: flex;
   justify-content: space-between;
@@ -618,6 +588,7 @@ footer {
   background: var(--bg-secondary);
   font-size: 1.1rem;
 }
+
 .now-playing {
   background: var(--bg-secondary);
   border-radius: 14px;
@@ -627,6 +598,7 @@ footer {
 }
 .np-track { font-size: 1.02rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .np-artist { font-size: .82rem; color: var(--amber); margin-top: 2px; font-weight: 500; }
+
 .player-controls {
   display: flex;
   justify-content: center;
@@ -651,6 +623,7 @@ footer {
   color: #FFF;
   box-shadow: 0 4px 14px var(--amber-glow);
 }
+
 .progress-wrap {
   margin-top: 10px;
   display: flex;
@@ -677,7 +650,7 @@ footer {
   background: var(--amber);
   border-radius: 99px;
 }
-/* Playlist header & list */
+
 .pl-header-row {
   display: flex;
   justify-content: space-between;
@@ -701,6 +674,7 @@ footer {
   transition: all .2s;
 }
 .pl-add-toggle:hover { background: var(--amber); color: #FFF; }
+
 .playlist-list {
   max-height: 160px;
   overflow-y: auto;
@@ -729,7 +703,7 @@ footer {
 .pl-item-info { flex: 1; min-width: 0; cursor: pointer; }
 .pl-item-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: .86rem; }
 .pl-item-art { font-size: .74rem; opacity: .75; }
-/* Tombol hapus lagu per item */
+
 .pl-item-del {
   width: 26px;
   height: 26px;
@@ -743,7 +717,7 @@ footer {
   color: #DC2626;
   background: rgba(220, 38, 38, 0.1);
 }
-/* Form Tambah Lagu */
+
 .add-song-box {
   background: var(--bg-secondary);
   border-radius: 12px;
@@ -786,6 +760,7 @@ footer {
   font-size: .78rem;
   font-weight: 600;
 }
+
 .pl-footer {
   display: flex;
   justify-content: flex-end;
@@ -799,9 +774,7 @@ footer {
   cursor: pointer;
 }
 .pl-reset-btn:hover { color: var(--amber); }
-/* ========================================================
-   10. LIGHTBOX & DIALOGS
-   ======================================================== */
+
 .lb {
   position: fixed;
   inset: 0;
@@ -839,6 +812,7 @@ footer {
 }
 .prev { left: clamp(8px, 2vw, 24px); }
 .next { right: clamp(8px, 2vw, 24px); }
+
 .info { display: grid; gap: 12px 40px; padding: 20px clamp(16px, 5vw, 80px) 28px; }
 @media(min-width:820px){ .info { grid-template-columns: 1fr 1.2fr; align-items: start; } }
 .info h2 { font-size: clamp(1.6rem, 3.2vw, 2.4rem); }
@@ -855,6 +829,7 @@ footer {
   align-items: center;
   gap: 6px;
 }
+
 .bar {
   max-width: 1280px;
   margin: 0 auto 24px;
@@ -872,6 +847,7 @@ footer {
 body.manage .mg { display: flex; }
 .mg button { padding: 5px 12px; border-radius: 99px; background: #FFF; font-size: .8rem; font-weight: 500; }
 .mg button[data-a=del] { color: #DC2626; }
+
 dialog {
   margin: auto;
   border: 0;
@@ -898,6 +874,7 @@ dialog input, dialog select, dialog textarea {
 }
 dialog .row { display: flex; justify-content: flex-end; gap: 10px; align-items: center; margin-top: 6px; }
 dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-weight: 500; background: var(--bg-secondary); }
+
 .toast {
   position: fixed;
   left: 50%;
@@ -918,7 +895,7 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
 </style>
 </head>
 <body>
-<!-- HEADER & NAV -->
+
 <header class="nav" id="nav">
   <a class="brand" href="#top">
     <span class="brand-dot"></span>
@@ -934,6 +911,7 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
         <span class="bars"><i></i><i></i><i></i><i></i></span>
         <span id="soundTxt">Putar Musik</span>
       </button>
+
       <button class="playlist-trigger" id="playlistTrigger" aria-label="Pilih lagu & playlist">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle>
@@ -941,10 +919,11 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
         <span>Playlist</span>
       </button>
     </div>
+
     <button class="manage-btn" id="manage" aria-pressed="false">Kelola</button>
   </nav>
 </header>
-<!-- POPUP FLOATING AUDIO PLAYER & PLAYLIST MANAGER -->
+
 <div class="player-modal" id="playerModal">
   <div class="pm-head">
     <div class="pm-title">
@@ -955,6 +934,7 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
     </div>
     <button class="pm-close" id="pmClose" aria-label="Tutup">&times;</button>
   </div>
+
   <div class="now-playing">
     <div class="np-track" id="npTitle">Memuat lagu...</div>
     <div class="np-artist" id="npArtist">Instrumen Akustik</div>
@@ -964,6 +944,7 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
       <div class="prog-bar" id="progBar"><div class="prog-fill" id="progFill"></div></div>
       <span id="durTime">0:00</span>
     </div>
+
     <div class="player-controls">
       <button class="p-btn" id="prevTrack" aria-label="Sebelumnya">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
@@ -977,11 +958,12 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
       </button>
     </div>
   </div>
+
   <div class="pl-header-row">
     <div class="pl-label">Daftar Lagu (<span id="plCount">0</span>)</div>
     <button class="pl-add-toggle" id="toggleAddSongBtn">+ Tambah Lagu</button>
   </div>
-  <!-- Form Tambah Lagu -->
+
   <div class="add-song-box" id="addSongBox" style="display:none">
     <input type="text" id="newSongTitle" placeholder="Judul lagu..." />
     <input type="text" id="newSongArtist" placeholder="Artis / penyanyi (opsional)..." />
@@ -994,18 +976,18 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
       <button type="button" class="btn-add-submit" id="submitAddSong">Simpan</button>
     </div>
   </div>
-  <!-- Daftar Lagu (Bisa Dipilih & Dihapus) -->
+
   <div class="playlist-list" id="playlistList"></div>
+
   <div class="pl-footer">
     <button class="pl-reset-btn" id="resetPlaylistBtn">Kembalikan Lagu Bawaan</button>
   </div>
 </div>
-<!-- MAIN CONTENT -->
+
 <main id="top">
-  <!-- HERO SECTION DENGAN FOTO KEBERSAMAAN ALMET -->
   <div class="hero">
     <div class="hero-bg" id="heroBg">
-      <img id="heroImg" src="foto-kebersamaan.jpg" alt="Foto Kebersamaan Satu Kelas">
+      <img id="heroImg" src="https://files.catbox.moe/vu7wcn.jpg" alt="Foto Kebersamaan Satu Kelas" onerror="this.onerror=null;this.src='foto-kebersamaan.jpg'">
     </div>
     
     <div class="hero-pill">
@@ -1026,7 +1008,7 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
       </a>
     </div>
   </div>
-  <!-- GALLERY SECTION -->
+
   <section id="galeri">
     <div class="head">
       <div>
@@ -1050,7 +1032,7 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
     
     <div class="gallery" id="gallery"></div>
   </section>
-  <!-- TIMELINE PERJALANAN KULIAH -->
+
   <section class="timeline" id="perjalanan">
     <div class="head">
       <div>
@@ -1062,14 +1044,14 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
       <div class="tl-fill" id="tlFill"></div>
     </div>
   </section>
-  <!-- CLOSING SECTION -->
+
   <section class="closing">
     <h2>Masih ada rak kosong untuk cerita berikutnya.</h2>
     <p>Setiap foto di sini dulunya hanya hari perkuliahan biasa. Kami baru tahu betapa berharganya setelah waktu itu berlalu.</p>
     <a class="cta" href="#top">Kembali ke Atas ↑</a>
   </section>
 </main>
-<!-- FOOTER DENGAN STATUS SUPABASE & DISUSUN OLEH ERFOLLEG25 -->
+
 <footer>
   <div>
     <strong>Rumah Kenangan</strong> — Disusun oleh Erfolleg25.
@@ -1079,7 +1061,7 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
     <span id="status">Memeriksa koneksi Supabase...</span>
   </div>
 </footer>
-<!-- LIGHTBOX -->
+
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Tampilan kenangan">
   <div class="lb-top">
     <span id="lbCount"></span>
@@ -1104,7 +1086,7 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
     </div>
   </div>
 </div>
-<!-- DIALOGS (TAMBAH / UBAH & LOGIN SUPABASE) -->
+
 <dialog id="dlg">
   <form id="frm">
     <h2 id="dTitle">Tambah kenangan</h2>
@@ -1146,6 +1128,7 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
     </div>
   </form>
 </dialog>
+
 <dialog id="login">
   <form id="lform">
     <h2>Masuk Pemilik Arsip</h2>
@@ -1163,17 +1146,15 @@ dialog .row button:not(.cta) { padding: 10px 18px; border-radius: 99px; font-wei
     </div>
   </form>
 </dialog>
+
 <div class="toast" id="toast" role="status"></div>
-<!-- SUPABASE CLIENT -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
 <script>
 window.supabase || document.write('<script src="https://unpkg.com/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"><\\/script>');
 </script>
+
 <script>
-/* ========================================================
-   1. PLAYLIST MANAGER (Bisa Ditambah, Dipilih & Dihapus)
-   Tersimpan otomatis di browser (localStorage)
-   ======================================================== */
 const DEFAULT_PLAYLIST = [
   {
     title: "Nada Akustik Kampus",
@@ -1191,6 +1172,7 @@ const DEFAULT_PLAYLIST = [
     src: "https://raw.githubusercontent.com/rafaelreis-hotmart/Audio-Sample-files/master/sample.mp3"
   }
 ];
+
 function getStoredPlaylist() {
   try {
     const s = localStorage.getItem('erfolleg25_playlist');
@@ -1201,7 +1183,9 @@ function getStoredPlaylist() {
   } catch (e) {}
   return [...DEFAULT_PLAYLIST];
 }
+
 let PLAYLIST = getStoredPlaylist();
+
 function savePlaylist() {
   try {
     const toSave = PLAYLIST.map(p => ({
@@ -1214,10 +1198,12 @@ function savePlaylist() {
     }
   } catch (e) {}
 }
+
 let curTrack = 0;
 let isAudioPlaying = false;
 const audioPlayer = new Audio();
 audioPlayer.preload = 'metadata';
+
 const soundBtn = document.getElementById('soundBtn');
 const soundTxt = document.getElementById('soundTxt');
 const playlistTrigger = document.getElementById('playlistTrigger');
@@ -1245,12 +1231,14 @@ const newSongFileInput = document.getElementById('newSongFileInput');
 const fileLabel = document.getElementById('fileLabel');
 const submitAddSong = document.getElementById('submitAddSong');
 const resetPlaylistBtn = document.getElementById('resetPlaylistBtn');
+
 function fmtTime(sec) {
   if (isNaN(sec) || !isFinite(sec)) return "0:00";
   const m = Math.floor(sec / 60);
   const s = Math.floor(sec % 60);
   return `${m}:${s < 10 ? '0' : ''}${s}`;
 }
+
 function renderPlaylistUI() {
   plCountEl.textContent = PLAYLIST.length;
   if (!PLAYLIST.length) {
@@ -1270,6 +1258,7 @@ function renderPlaylistUI() {
     </div>
   `).join('');
 }
+
 function loadTrack(idx, autoPlay = false) {
   if (!PLAYLIST.length) {
     audioPlayer.pause();
@@ -1284,10 +1273,12 @@ function loadTrack(idx, autoPlay = false) {
   npTitle.textContent = track.title;
   npArtist.textContent = track.artist || 'Musik Kenangan';
   renderPlaylistUI();
+
   if (autoPlay) {
     audioPlayer.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
   }
 }
+
 function deleteTrack(e, idx) {
   e.stopPropagation();
   if (PLAYLIST.length <= 1) {
@@ -1298,11 +1289,14 @@ function deleteTrack(e, idx) {
   const isPlayingDeleted = (curTrack === idx && isAudioPlaying);
   PLAYLIST.splice(idx, 1);
   savePlaylist();
+
   if (curTrack >= PLAYLIST.length) curTrack = PLAYLIST.length - 1;
   else if (idx < curTrack) curTrack--;
+
   loadTrack(curTrack, isPlayingDeleted);
   toast(`Lagu "${deleted.title}" dihapus`);
 }
+
 function setPlayState(playing) {
   isAudioPlaying = playing;
   soundBtn.classList.toggle('playing', playing);
@@ -1312,6 +1306,7 @@ function setPlayState(playing) {
   pauseIcon.style.display = playing ? 'block' : 'none';
   renderPlaylistUI();
 }
+
 function toggleAudio() {
   if (!audioPlayer.src) {
     loadTrack(curTrack, true);
@@ -1324,10 +1319,12 @@ function toggleAudio() {
     audioPlayer.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
   }
 }
+
 soundBtn.onclick = toggleAudio;
 playPauseTrack.onclick = toggleAudio;
 prevTrackBtn.onclick = () => loadTrack(curTrack - 1, true);
 nextTrackBtn.onclick = () => loadTrack(curTrack + 1, true);
+
 audioPlayer.ontimeupdate = () => {
   if (audioPlayer.duration) {
     const p = (audioPlayer.currentTime / audioPlayer.duration) * 100;
@@ -1336,12 +1333,15 @@ audioPlayer.ontimeupdate = () => {
     durTimeEl.textContent = fmtTime(audioPlayer.duration);
   }
 };
+
 audioPlayer.onended = () => loadTrack(curTrack + 1, true);
+
 progBar.onclick = e => {
   const rect = progBar.getBoundingClientRect();
   const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
   if (audioPlayer.duration) audioPlayer.currentTime = ratio * audioPlayer.duration;
 };
+
 playlistTrigger.onclick = () => playerModal.classList.toggle('active');
 pmClose.onclick = () => playerModal.classList.remove('active');
 document.addEventListener('click', e => {
@@ -1349,12 +1349,13 @@ document.addEventListener('click', e => {
     playerModal.classList.remove('active');
   }
 });
-// Toggle Form Tambah Lagu
+
 toggleAddSongBtn.onclick = () => {
   const isHidden = addSongBox.style.display === 'none';
   addSongBox.style.display = isHidden ? 'grid' : 'none';
   toggleAddSongBtn.textContent = isHidden ? '✕ Tutup' : '+ Tambah Lagu';
 };
+
 newSongFileInput.onchange = e => {
   const file = e.target.files[0];
   if (!file) return;
@@ -1364,12 +1365,14 @@ newSongFileInput.onchange = e => {
   newSongUrl.value = blobUrl;
   fileLabel.textContent = "✓ " + file.name.substring(0, 14) + "..";
 };
+
 submitAddSong.onclick = () => {
   const title = newSongTitle.value.trim();
   const artist = newSongArtist.value.trim() || 'Pilihan Saya';
   const url = newSongUrl.value.trim();
   if (!title) { toast("Masukkan judul lagu!"); return; }
   if (!url) { toast("Masukkan URL lagu atau pilih file MP3!"); return; }
+
   PLAYLIST.unshift({ title, artist, src: url });
   savePlaylist();
   newSongTitle.value = '';
@@ -1381,6 +1384,7 @@ submitAddSong.onclick = () => {
   loadTrack(0, true);
   toast(`Lagu "${title}" ditambahkan ke playlist!`);
 };
+
 resetPlaylistBtn.onclick = () => {
   if (!confirm("Kembalikan daftar lagu ke pilihan awal?")) return;
   PLAYLIST = [...DEFAULT_PLAYLIST];
@@ -1389,11 +1393,11 @@ resetPlaylistBtn.onclick = () => {
   renderPlaylistUI();
   toast("Playlist dikembalikan ke awal");
 };
+
 loadTrack(0, false);
-/* ========================================================
-   2. DATA & STATE KENANGAN
-   ======================================================== */
+
 const U = (id, w = 1200) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`;
+
 const MEMORIES = [
   { id: 1, title: 'Kebersamaan Satu Kelas', date: '2026-10-14', place: 'Studio & Kampus', moment: 'Perkuliahan', type: 'foto', size: 'f', img: '1523240795612-9a054b0db644', story: 'Satu angkatan dengan jaket oranye kebanggaan. Dari tugas deadline mepet sampai tertawa lepas bersama.' },
   { id: 2, title: 'Ulang tahun kawan sekelas', date: '2025-11-02', place: 'Kantin Kampus', moment: 'Perayaan', type: 'foto', size: '', img: '1530103862676-de8c9debad1d', story: 'Kue seadanya dan lilin yang padam ditiup angin. Tawa di hari itu yang paling kami rindukan.' },
@@ -1402,24 +1406,29 @@ const MEMORIES = [
   { id: 5, title: 'Presentasi dan ruang kelas', date: '2024-03-15', place: 'Ruang Kuliah', moment: 'Perkuliahan', type: 'foto', size: '', img: '1488646953014-85cb44e25828', story: 'Pagi-pagi rebutan colokan laptop dan latihan presentasi di depan teman sendiri.' },
   { id: 6, title: 'Makan bersama sehabis ujian', date: '2023-09-30', place: 'Warung Favorit', moment: 'Sehari-hari', type: 'foto', size: '', img: '1504674900247-0877df9cc836', story: 'Perasaan lega yang luar biasa setelah minggu ujian semester yang melelahkan.' }
 ];
+
 const YEARS = {
   2023: 'Awal langkah perkuliahan. Masih canggung mencari teman dan adaptasi mata kuliah.',
   2024: 'Masa-masa paling sibuk: tugas menumpuk, organisasi, dan diskusi kelompok.',
   2025: 'Semester lanjut yang penuh tantangan, tapi kekompakan kelas semakin terasa.',
   2026: 'Tahun kebersamaan yang takkan terlupakan. Satu kelas, satu cerita abadi.'
 };
+
 const $ = s => document.querySelector(s);
 const st = { m: 'Semua', t: 'Semua', y: null };
 const fmt = d => new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
 const yr = m => (m.date || '').slice(0, 4);
 let DATA = [...MEMORIES];
+
 const list = () => DATA.filter(m => 
   (st.m === 'Semua' || m.moment === st.m) &&
   (st.t === 'Semua' || m.type === st.t.toLowerCase()) &&
   (!st.y || yr(m) === st.y)
 );
+
 const nav = $('#nav');
 addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 50), { passive: true });
+
 function chips(el, items, key) {
   el.innerHTML = items.map(i => `<button class="chip" aria-pressed="${st[key] === i}" data-v="${i}">${i}</button>`).join('');
   el.onclick = e => {
@@ -1429,18 +1438,21 @@ function chips(el, items, key) {
     sync();
   };
 }
+
 function sync() {
   chips($('#fMoment'), ['Semua', 'Perkuliahan', 'Liburan', 'Perayaan', 'Sehari-hari', 'Spesial'], 'm');
   chips($('#fType'), ['Semua', 'Foto', 'Video'], 't');
   renderGallery();
   renderYears();
 }
+
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) {
     e.target.classList.add('in');
     io.unobserve(e.target);
   }
 }), { threshold: .1 });
+
 function renderGallery() {
   const g = $('#gallery'), items = list();
   $('#count').textContent = items.length + ' kenangan' + (st.y ? ' di ' + st.y : '');
@@ -1470,6 +1482,7 @@ function renderGallery() {
   
   g.querySelectorAll('.tile').forEach(t => io.observe(t));
 }
+
 $('#gallery').addEventListener('click', e => {
   const t = e.target.closest('.tile');
   if (!t) return;
@@ -1480,12 +1493,14 @@ $('#gallery').addEventListener('click', e => {
   }
   openLB(+t.dataset.i);
 });
+
 $('#gallery').addEventListener('keydown', e => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('tile')) {
     e.preventDefault();
     openLB(+e.target.dataset.i);
   }
 });
+
 function renderYears() {
   const tl = $('#tl');
   tl.querySelectorAll('.yr').forEach(n => n.remove());
@@ -1505,15 +1520,17 @@ function renderYears() {
   });
   tlScroll();
 }
+
 function tlScroll() {
   const tl = $('#tl'), r = tl.getBoundingClientRect();
   const p = Math.min(Math.max((innerHeight * .6 - r.top) / r.height, 0), 1);
   $('#tlFill').style.height = (p * (r.height - 12)) + 'px';
 }
 addEventListener('scroll', tlScroll, { passive: true });
-/* ============ LIGHTBOX ============ */
+
 const lb = $('#lb');
 let cur = 0, cl = [], lastFocus;
+
 function openLB(i) {
   cl = list();
   cur = i;
@@ -1523,6 +1540,7 @@ function openLB(i) {
   show(true);
   $('#lbClose').focus();
 }
+
 function closeLB() {
   lb.classList.remove('open');
   document.body.style.overflow = '';
@@ -1530,6 +1548,7 @@ function closeLB() {
   speechSynthesis.cancel();
   lastFocus && lastFocus.focus();
 }
+
 function show(first) {
   const m = cl[cur], md = $('#media');
   const paint = () => {
@@ -1549,17 +1568,20 @@ function show(first) {
     setTimeout(paint, 260);
   }
 }
+
 const go = d => { cur = (cur + d + cl.length) % cl.length; show(); };
 $('#prev').onclick = () => go(-1);
 $('#next').onclick = () => go(1);
 $('#lbClose').onclick = closeLB;
 lb.addEventListener('click', e => { if (e.target.classList.contains('stage')) closeLB(); });
+
 addEventListener('keydown', e => {
   if (!lb.classList.contains('open')) return;
   if (e.key === 'Escape') closeLB();
   if (e.key === 'ArrowLeft') go(-1);
   if (e.key === 'ArrowRight') go(1);
 });
+
 $('#listen').onclick = () => {
   if (speechSynthesis.speaking) { speechSynthesis.cancel(); return; }
   const text = cl[cur].story || cl[cur].title;
@@ -1568,10 +1590,11 @@ $('#listen').onclick = () => {
   u.rate = .92;
   speechSynthesis.speak(u);
 };
-/* ============ SUPABASE DATA (100% AMAN & TERHUBUNG) ============ */
+
 const SB_URL = 'https://zrqxhykeruqyqdmpvazo.supabase.co';
 const SB_KEY = 'sb_publishable_CmWrLH308Nc8GjM8r9i_NA_uCOrYMah';
 const BUCKET = 'kenangan';
+
 let sb = null, sbWhy = !window.supabase ? 'pustaka Supabase gagal dimuat' : '';
 try {
   if (SB_URL && SB_KEY && window.supabase) {
@@ -1580,21 +1603,26 @@ try {
 } catch (e) {
   sbWhy = 'kunci ditolak: ' + e.message;
 }
+
 const setStatus = (t, isSuccess = true) => {
   const s = $('#status'), dot = $('#statusDot');
   if (s) s.textContent = t;
   if (dot) dot.className = 'status-dot ' + (isSuccess ? 'online' : 'error');
 };
+
 const mu = m => m.url || null;
 const pic = (m, w) => m.url || (m.img ? U(m.img, w) : 'foto-kebersamaan.jpg');
 let isOwner = false;
+
 function toast(t, ms = 2600) {
   const e = $('#toast');
   e.textContent = t;
   e.classList.add('show');
   setTimeout(() => e.classList.remove('show'), ms);
 }
+
 const pub = p => sb.storage.from(BUCKET).getPublicUrl(p).data.publicUrl;
+
 async function load() {
   if (!sb) {
     DATA = [...MEMORIES];
@@ -1626,9 +1654,11 @@ async function load() {
     setStatus('Supabase: ' + (err.message || 'Gagal memuat') + ' (menampilkan cadangan)', false);
     DATA = [...MEMORIES];
   }
+
   if (st.y && !DATA.some(m => yr(m) === st.y)) st.y = null;
   sync();
 }
+
 function shrink(f) {
   return new Promise(res => {
     if (!f.type.startsWith('image/') || f.type === 'image/gif') return res(f);
@@ -1646,6 +1676,7 @@ function shrink(f) {
     i.src = u;
   });
 }
+
 async function upload(f) {
   const isV = f.type.startsWith('video/');
   if (isV && f.size > 50 * 1024 * 1024) throw new Error('Video lebih dari 50 MB. Kecilkan dulu.');
@@ -1656,8 +1687,10 @@ async function upload(f) {
   if (error) throw error;
   return { path, type: isV ? 'video' : 'foto' };
 }
+
 const dlg = $('#dlg');
 let editing = null;
+
 function openForm(m) {
   editing = m || null;
   $('#dTitle').textContent = m ? 'Ubah kenangan' : 'Tambah kenangan';
@@ -1671,7 +1704,9 @@ function openForm(m) {
   $('#fStory').value = m ? m.story : '';
   dlg.showModal();
 }
+
 $('#dCancel').onclick = () => dlg.close();
+
 $('#frm').onsubmit = async e => {
   e.preventDefault();
   if (!sb || !isOwner) {
@@ -1715,6 +1750,7 @@ $('#frm').onsubmit = async e => {
     btn.textContent = 'Simpan ke Supabase';
   }
 };
+
 async function delMem(m) {
   if (!m.path) {
     toast('Foto contoh bawaan tidak bisa dihapus.');
@@ -1730,6 +1766,7 @@ async function delMem(m) {
   await load();
   toast('Kenangan berhasil dihapus');
 }
+
 function setManage(on) {
   document.body.classList.toggle('manage', on);
   $('#bar').hidden = !on;
@@ -1737,6 +1774,7 @@ function setManage(on) {
   $('#manage').textContent = on ? 'Selesai' : 'Kelola';
   if (on) $('#galeri').scrollIntoView({ behavior: 'smooth' });
 }
+
 $('#manage').onclick = () => {
   if (!sb) {
     alert('Supabase belum terhubung.');
@@ -1745,8 +1783,10 @@ $('#manage').onclick = () => {
   if (document.body.classList.contains('manage')) return setManage(false);
   isOwner ? setManage(true) : $('#login').showModal();
 };
+
 $('#add').onclick = () => openForm();
 $('#lCancel').onclick = () => $('#login').close();
+
 $('#lform').onsubmit = async e => {
   e.preventDefault();
   const { error } = await sb.auth.signInWithPassword({
@@ -1764,117 +1804,14 @@ $('#lform').onsubmit = async e => {
   setManage(true);
   toast("Berhasil masuk sebagai pemilik");
 };
+
 $('#logout').onclick = async () => {
   await sb.auth.signOut();
   isOwner = false;
   setManage(false);
   toast('Anda sudah keluar');
 };
-(async () => {
-  if (sb) {
-    const { data } = await sb.auth.getSession();
-    isOwner = !!(data && data.session);
-  }
-  load();
-})();
-</script>
-</body>
-</html>
-tidak terbaca ka? kenapa tidak terbaca fotonya? apa penyebabnya
-Penyebab Kenapa Fotonya Tidak Terbaca:
 
-Dari tangkapan layar yang Anda kirimkan, di pojok kiri atas terlihat tulisan kecil "Foto Kebersamaan Satu Kelas" dengan ikon gambar rusak.
-
-Penyebabnya adalah:
-
-Website Anda diakses secara online melalui GitHub Pages (https://...github.io/...).
-Kode HTML sebelumnya memanggil foto dengan nama file lokal: src="foto-kebersamaan.jpg".
-Di repository GitHub Anda, file foto-kebersamaan.jpg belum di-upload (baru file index.html saja yang ada).
-Akibatnya, browser mencari file tersebut di GitHub dan menghasilkan error 404 Not Found (file tidak ditemukan), sehingga background menjadi kosong/gelap.
-Solusi Instan yang Sudah Kami Buat:
-
-Agar Anda tidak perlu repot upload file gambar terpisah ke GitHub, kami sudah meng-hosting foto almet kelas Anda ke link gambar online langsung yang cepat dan aktif permanen: 👉 https://files.catbox.moe/vu7wcn.jpg
-
-Tag foto di bagian awal web sekarang sudah diubah menjadi:
-
-html
-<img id="heroImg" src="https://files.catbox.moe/vu7wcn.jpg" alt="Foto Kebersamaan Satu Kelas" onerror="this.onerror=null;this.src='foto-kebersamaan.jpg'">
-
-Dengan perubahan ini:
-
-Begitu kode di bawah di-paste ke GitHub Pages Anda, foto kebersamaan berjas almet oranye dijamin langsung muncul otomatis 100%!
-Tidak akan ada lagi gambar rusak atau background gelap.
-Bagian Kode yang Perlu Diperbarui di index.html
-
-Cukup ganti bagian hero di file index.html Anda (sekitar baris 1035):
-
-html
-<!-- MAIN CONTENT -->
-<main id="top">
-  <!-- HERO SECTION DENGAN FOTO KEBERSAMAAN ALMET -->
-  <div class="hero">
-    <div class="hero-bg" id="heroBg">
-      <!-- Foto kebersamaan almet online langsung sehingga otomatis terbaca di GitHub Pages -->
-      <img id="heroImg" src="https://files.catbox.moe/vu7wcn.jpg" alt="Foto Kebersamaan Satu Kelas" onerror="this.onerror=null;this.src='foto-kebersamaan.jpg'">
-    </div>
-    
-    <div class="hero-pill">
-      <span>🎓</span> Arsip Kenangan Satu Kelas
-    </div>
-    
-    <!-- Tulisan "Hal-hal kecil" diperkecil & proporsional -->
-    <h1>
-      <span><b>Hal-hal kecil</b></span>
-      <span><b>yang tak ingin</b></span>
-      <span><b>kami lupakan.</b></span>
-    </h1>
-    
-    <!-- Teks Satu Kelas -->
-    <div class="hero-foot">
-      <p>Satu kelas, satu rak foto yang tak pernah rapi. Kami kumpulkan semuanya di sini: kebersamaan di perkuliahan, dari ruang kelas, tugas kelompok, sampai tawa di sela jam kuliah.</p>
-      <a class="cta" href="#galeri">
-        <span>Buka Arsip Foto</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-
-Tips: File proyek yang sudah 100% diperbaiki juga tersimpan langsung di laptop Anda pada:
-📁 rumah-kenangan/index.html
-Anda bisa langsung copy isi file tersebut ke GitHub repository Anda, lakukan Commit changes, dan refresh halaman GitHub Pages Anda!
-
-  if (!sb) {
-    alert('Supabase belum terhubung.');
-    return;
-  }
-  if (document.body.classList.contains('manage')) return setManage(false);
-  isOwner ? setManage(true) : $('#login').showModal();
-};
-$('#add').onclick = () => openForm();
-$('#lCancel').onclick = () => $('#login').close();
-$('#lform').onsubmit = async e => {
-  e.preventDefault();
-  const { error } = await sb.auth.signInWithPassword({
-    email: $('#lEmail').value.trim(),
-    password: $('#lPass').value
-  });
-  if (error) {
-    $('#lErr').textContent = 'Email atau kata sandi pemilik salah.';
-    return;
-  }
-  isOwner = true;
-  $('#lErr').textContent = '';
-  $('#lPass').value = '';
-  $('#login').close();
-  setManage(true);
-  toast("Berhasil masuk sebagai pemilik");
-};
-$('#logout').onclick = async () => {
-  await sb.auth.signOut();
-  isOwner = false;
-  setManage(false);
-  toast('Anda sudah keluar');
-};
 (async () => {
   if (sb) {
     const { data } = await sb.auth.getSession();
